@@ -9,7 +9,12 @@ use CodeIgniter\Files\File;
 class PostController extends BaseController
 {
     public function index()
-    {}
+    {
+        $model = new Post();
+        $data['posts'] =  $model->orderBy('id', 'DESC');
+        
+        return view ('posts/post', $data);
+    }
 
     public function create()
     {

@@ -32,14 +32,17 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index/home');
+$routes->get('/employee', 'EmployeeController::index');
 
 // Static routes
 $routes->get('/posts', 'PostController::index');
 $routes->match(['get', 'post'], '/post/create', 'PostController::create');
-$routes->get('/posts/(:any)', 'PostController::');
+$routes->get('/posts/(:any)', 'PostController::show');
 $routes->get('/posts', 'PostController::show');
 $routes->match(['get', 'post'], '/posts/(:any)/edit', 'PostController::edit');
 $routes->get('/posts/(:any)/delete', 'PostController::delete');
+
+$routes->post('/ajax-employee/store', 'EmployeeController::store');
 
 // Dynamic routes
 $routes->get('/(:any)', 'Home::index/$1');
