@@ -42,7 +42,10 @@ $routes->get('/posts', 'PostController::show');
 $routes->match(['get', 'post'], '/posts/(:any)/edit', 'PostController::edit');
 $routes->get('/posts/(:any)/delete', 'PostController::delete');
 
-$routes->post('/ajax-employee/store', 'EmployeeController::store');
+$routes->post('ajax-employee/store', 'EmployeeController::store');
+$routes->get('ajax-employee/getEmployee', 'EmployeeController::getEmployee');
+$routes->post('ajax-employee/viewEmployee', 'EmployeeController::viewEmployee');
+$routes->post('ajax-employee/deleteEmployee', 'EmployeeController::deleteEmployee');
 
 // Dynamic routes
 $routes->get('/(:any)', 'Home::index/$1');
