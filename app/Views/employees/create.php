@@ -63,6 +63,38 @@
                 </div>
             </div>
         </div>
+
+        <!-- Update Employee Modal -->
+        <div class="modal fade" id="updateEmployee" tabindex="-1" role="dialog" aria-labelledby="updateEmployee" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateEmployee">Update Employee</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="input-fname">First Name</label>
+                            <input type="text" class="form-control" name="input-fname" id="input-fname" placeholder="Post Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="input-lname">Last Name</label>
+                            <input type="text" class="form-control" name="input-lname" id="input-lname" placeholder="Post Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="input-email">Email</label>
+                            <input type="email" class="form-control" name="input-email" id="input-email" placeholder="Post Name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary ajax-save-employee">Update Employee</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-8 offset-2 mt-5">
@@ -117,7 +149,7 @@ function GetData() {
         url: "ajax-employee/getEmployee",
         success: function (response) {
             $.each(response.employees, function (key, value) { 
-                $('.emptable').append('<tr><td class="stdid">'+value['id']+'</td><td>'+value['first_name']+'</td><td>'+value['last_name']+'</td><td>'+value['email']+'</td><td><button class="badge p-2 m-2 btn-info viewBtn">View</button><button class="badge p-2 m-2 btn-warning">Edit</button><button class="badge p-2 m-2 btn-danger deleteBtn">Delete</button></td>\</tr>');
+                $('.emptable').append('<tr><td class="stdid">'+value['id']+'</td><td>'+value['first_name']+'</td><td>'+value['last_name']+'</td><td>'+value['email']+'</td><td><button class="badge p-2 m-2 btn-info viewBtn">View</button><button class="badge p-2 m-2 btn-warning editBtn">Edit</button><button class="badge p-2 m-2 btn-danger deleteBtn">Delete</button></td>\</tr>');
             });
         }
     });
@@ -162,7 +194,12 @@ $(document).ready(function () {
     });
 });
 
-
+$(document).ready(function () {
+    $(document).on('click','.editBtn', function () {
+        var empID = $(this).closest('tr').find('.stdid').text();
+        alert(empID);
+    });
+});
 
 $(document).ready(function () {    
 GetData();
